@@ -1,6 +1,6 @@
-String tagDb = "v1.0.2"
-String tagBack = "v1.0.4"
-String tagFront = "v1.0.2"
+String tagDb = "v1.0.3"
+String tagBack = "v1.0.5"
+String tagFront = "v1.0.3"
 String env = "horsprod"
 
 echo "La branche actuelle est ${env.BRANCH_NAME}."
