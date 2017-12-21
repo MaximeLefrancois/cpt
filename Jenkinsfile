@@ -13,7 +13,7 @@ if (env.BRANCH_NAME == 'develop'){
 
 parallel db: {
 		stage('Déploiement db') {
-			build "../cpt-front/${tagDb}", parameters: [string(name: 'ENV_DB', value: "${environment}")]		
+			build job: "../cpt-db/${tagDb}", parameters: [string(name: 'ENV_DB', value: "${environment}")]
 		}
     }, back: {
 		stage('Déploiement back') {
@@ -21,6 +21,6 @@ parallel db: {
 		}
     }, front: {
 		stage('Déploiement Front') {
-			build "../cpt-front/${tagFront}", parameters: [string(name: 'ENV_FRONT', value: "${environment}")]
+			build job: "../cpt-front/${tagFront}", parameters: [string(name: 'ENV_FRONT', value: "${environment}")]
 		}
     }
