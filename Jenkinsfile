@@ -13,12 +13,6 @@ properties([
    ])
 ])
 
-//if (env.BRANCH_NAME == 'develop'){
-//	environment = "horsprod"
-//} else if (env.BRANCH_NAME == 'master'){
-//	environment = "prod"
-//}
-
 parallel db: {
 		stage('Déploiement db') {
 			build job: "../cpt-db/${tagDb}", parameters: [string(name: 'ENV_DB', value: "${ENV}"), string(name: 'LOGIN', value: "${LOGIN}"), password(description: 'Password compte AD', name: 'PWD', value: <object of type hudson.util.Secret>)]
