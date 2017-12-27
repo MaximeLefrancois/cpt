@@ -5,6 +5,13 @@ String environment = "horsprod"
 
 echo "La branche actuelle est ${env.BRANCH_NAME}."
 
+properties([
+   parameters([
+	  string(defaultValue: '', description: 'Identifiant compte AD', name: 'LOGIN'),
+	  password(defaultValue: '', description: 'Password compte AD', name: 'PWD')
+   ])
+])
+
 if (env.BRANCH_NAME == 'develop'){
 	environment = "horsprod"
 } else if (env.BRANCH_NAME == 'master'){
@@ -17,7 +24,7 @@ parallel db: {
 		}
     }, back: {
 		stage('Déploiement back') {
-			build job: "../cpt-back/${tagBack}", parameters: [string(name: 'ENV_BACK', value: "${environment}")]
+			build job: "../cpt-back/${tagBack}", parameters: [string(name: 'ENV_BACK', value: "${environment}"), string(name: 'LOGIN', value: "${LOGIN}"), password(description: 'Votre mot de passe ?', name: 'PWD', value: <object of type hudson.util.Secret>)]
 		}
     }, front: {
 		stage('Déploiement Front') {
