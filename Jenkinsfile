@@ -6,7 +6,7 @@ echo "La branche actuelle est ${env.BRANCH_NAME}."
 
 properties([
    parameters([
-	choice(choices: ['horsprod', 'prod'], description: 'Quel environnement de deploiement', name: 'ENV_PARENT'),
+	choice(choices: ['horsprod', 'prod'], description: 'Quel environnement de déploiement', name: 'ENV_PARENT'),
 	string(defaultValue: '', description: 'Identifiant compte AD', name: 'LOGIN_PARENT'),
 	password(defaultValue: '', description: 'Password compte AD', name: 'PWD')
    ])
