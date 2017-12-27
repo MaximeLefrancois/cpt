@@ -7,16 +7,15 @@ echo "La branche actuelle est ${env.BRANCH_NAME}."
 
 properties([
    parameters([
-	string(defaultValue: 'horsprod', description: 'Quel environnement de deploiement ("prod" ou "horsprod")?', name: 'ENV_PARENT'),
-	string(defaultValue: '', description: 'Identifiant compte AD', name: 'LOGIN'),
-	password(defaultValue: '', description: 'Password compte AD', name: 'PWD')
+      string(defaultValue: 'horsprod', description: 'Quel environnement de deploiement ("prod" ou "horsprod")?', name: 'ENV_PARENT'),
+	  string(defaultValue: '', description: 'Identifiant compte AD', name: 'LOGIN'),
+	  password(defaultValue: '', description: 'Password compte AD', name: 'PWD')
    ])
 ])
 
 parallel db: {
 		stage('Déploiement db') {
 			build job: "../cpt-db/${tagDb}", parameters: [string(name: 'ENV_DB', value: "${ENV_PARENT}"), string(name: 'LOGIN', value: "${LOGIN}"), password(description: 'Password compte AD', name: 'PWD', value: <object of type hudson.util.Secret>)]
-
 		}
     }, back: {
 		stage('Déploiement back') {
