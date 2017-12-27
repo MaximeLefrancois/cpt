@@ -3,14 +3,6 @@ String tagBack = "v1.0.6"
 String tagFront = "v1.0.4"
 String environment = "horsprod"
 
-properties([
-   parameters([
-      string(defaultValue: 'horsprod', description: 'Quel environnement de deploiement ("prod" ou "horsprod")?', name: 'ENV_PARENT'),
-	  string(defaultValue: '', description: 'Identifiant compte AD', name: 'LOGIN_PARENT'),
-	  password(defaultValue: '', description: 'Password compte AD', name: 'PWD_PARENT')
-   ])
-])
-
 echo "La branche actuelle est ${env.BRANCH_NAME}."
 
 parallel db: {
