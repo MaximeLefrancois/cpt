@@ -4,7 +4,7 @@ String tagFront = "v1.0.5"
 
 echo "La branche actuelle est ${env.BRANCH_NAME}."
 
-def choiceParams = ['horsprod', 'prod']
+def choiceParams = 'horsprod', 'prod'
 
 properties([
    parameters([
